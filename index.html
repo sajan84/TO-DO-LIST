@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do list</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <form >
+        <input type="text"  placeholder="Enter a Task">
+        <button type="submit" class="submit">submit</button>
+        <ul class="list">
+
+        </ul>
+    </form>
+
+    <script>
+        const input=document.querySelector('input')
+        const form=document.querySelector("form")
+        const list=document.querySelector('.list')
+        form.addEventListener('submit',function(e){
+            e.preventDefault();//when we click on submit button then reload the page that is by default in submit to prevent that we us preventDefault() function
+
+            toDo();
+            input.value="";//After add the work in To do list we again blank the input section to That we chnage the value of that that's why we chnage the input.value
+        })
+
+        function toDo(){
+            if(input.value ===""){
+                alert("The input is Empty");
+            }
+
+            else{
+                const value=input.value
+                //creating a li element when we submit the button
+                const newList=document.createElement("li")
+                //Adding the input value to the li
+                newList.textContent=value;
+                //Adding Delete Button
+                const deletebtn=document.createElement("button")
+                //chnaging the content of Delete Button
+                deletebtn.textContent="Delete"
+                //Add in the list
+                list.append(newList)
+
+                newList.append(' ',deletebtn)
+            }
+        }
+        list.addEventListener('click',function(e){
+            if (e.target.nodeName==='BUTTON') {
+                e.target.closest('LI').remove();
+            }
+        })
+
+    </script>
+</body>
+</html>
